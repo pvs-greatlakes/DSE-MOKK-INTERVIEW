@@ -1,0 +1,32 @@
+SQL_Test at 12:25:22.txt
+== SET 3 ==
+
+A) Query involving a single database table
+
+Q1) Give the count of employees having income between 20000 AND 40000
+
+Female employees count : 10
+The WHERE clause is used to compare the given value with the field value available in the database table.
+The COUNT() function returns the number of records returned by a SELECT query.
+
+
+
+Q2) Give the count of employees who will attain 60 years from 5 years from now 
+
+Count of Employees who will attain 60 years from 5 years from now : 3
+
+Q3) Select the Oldest Female employee
+Female employee name : Gauri O Age : 61
+
+
+B) Query involving two database tables
+
+Q4) Give the count, department ID and department name of the employees drawing Less than 2000
+
+Count of employees drawing less than 20k as income : 3 Dept ID : 1 Name : HR & Admin
+
+Count of employees drawing less than 20k as income : 1 Dept ID : 2 Name : Finance & Accounts
+
+Count of employees drawing less than 20k as income : 1 Dept ID : 4 Name : Sales & Marketing
+
+Count of employees drawing less than 20k as income : 1 Dept ID : 5 Name : Purchase

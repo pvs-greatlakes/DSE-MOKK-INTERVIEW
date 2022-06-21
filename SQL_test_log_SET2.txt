@@ -1,0 +1,71 @@
+SQL_Test at 14:05:17.txt
+== SET 2 ==
+
+A) Query involving a single database table
+
+Q1) Give the count of female employees
+
+
+Anwers
+
+SELECT COUNT(*) FROM EMPLOYEE WHERE SEX = 'F';
+Female employees count : 22
+The WHERE clause is used to compare the given value with the field value available in the database table.
+The COUNT() function returns the number of records returned by a SELECT query.
+
+
+
+Q2) Give the count of employees who joined 5 years ago (i.e. experience in the company is 5 years or more) 
+
+
+Anwers
+
+SELECT COUNT(*) FROM EMPLOYEE WHERE DOJ  < DATE_SUB(NOW(), INTERVAL 5 YEAR);
+Count of Employees who joined 5 years ago : 42
+
+The DATE_SUB() function subtracts a time / date interval from a date and then returns the date.
+
+Q3) Select the Oldest Male employee
+
+Anwers
+
+SELECT FIRST_NAME, LAST_NAME, CONVERT(AGE, CHAR) AS AGE 
+FROM EMPLOYEE 
+WHERE AGE = ALL(SELECT MAX(AGE) FROM EMPLOYEE WHERE SEX = 'M') AND SEX = 'M';
+Male employee name : Piyush J Age : 61
+
+Q3) Select the Oldest Male employee
+
+Anwers
+
+SELECT FIRST_NAME, LAST_NAME, CONVERT(AGE, CHAR) AS AGE 
+FROM EMPLOYEE 
+WHERE AGE = ALL(SELECT MAX(AGE) FROM EMPLOYEE WHERE SEX = 'M') AND SEX = 'M';
+Male employee name : Praveen X Age : 61
+
+
+B) Query involving two database tables
+
+Q4) Give the count, department ID and department name of the employees drawing Less than the average salary
+
+Anwers
+
+SELECT COUNT(*), A.DEPT_ID, B.DEPT_NAME FROM   EMPLOYEE A, DEPARTMENT B WHERE INCOME < ALL(SELECT avg(income) FROM employee) and a.DEPT_ID = b.DEPT_ID GROUP by DEPT_ID;
+
+Count of employees drawing less salary than average : 4 Dept ID : 1 Name : HR & Admin
+
+Count of employees drawing less salary than average : 3 Dept ID : 2 Name : Finance & Accounts
+
+Count of employees drawing less salary than average : 4 Dept ID : 3 Name : Production
+
+Count of employees drawing less salary than average : 2 Dept ID : 4 Name : Sales & Marketing
+
+Count of employees drawing less salary than average : 5 Dept ID : 5 Name : Purchase
+
+Q5) Give the count of employees who availed leave
+
+Anwers
+
+SELECT CONCAT(A.FIRST_NAME, " ", A.LAST_NAME) AS NAME, B.LEAVE_DAYS FROM EMPLOYEE A, LEAVES B WHERE A.EMP_ID = B.EMP_ID AND B.LEAVE_DAYS = ALL(SELECT MAX(LEAVE_DAYS) FROM LEAVES);
+
+Employee name who took max. leave : Chandar G
